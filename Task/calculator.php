@@ -27,13 +27,15 @@
 
 //ポストデータが与えられているときのみ処理を行う
 if( isset($_POST['number1']) && isset($_POST['number2']) && isset ($_POST['cal']) ) {
+    //数字の判定
+    if ( is_numeric($number1) && is_numeric($number2) ) {
 //ローカル変数にポストデータを格納
     $number1 = $_POST['number1'];
     $number2 = $_POST['number2'];
     $operator = $_POST['cal'];
 
     //ポストデータが数値のときのみ計算を行う
-    if ( is_numeric($number1) && is_numeric($number2) ) {
+
 //計算する-----------------------------------------------
         print "計算結果<br />\n";
         switch ( $operator ) {
