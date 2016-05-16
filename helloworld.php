@@ -5,7 +5,7 @@
         <body>
 <?php
 //helloworldのテスト
-print 'helloworld!!';
+print 'techaca!!';
 ?>
 </body>
 </html>
