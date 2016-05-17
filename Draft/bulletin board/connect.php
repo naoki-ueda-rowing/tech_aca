@@ -14,9 +14,7 @@ function getDb()
     try {
         $db = new PDO($dsn, $usr, $passwd);
         $db->exec('SET NAMES utf8');
-        //print '接続成功';
-        $db = NULL;
-
+        //print 'データベースに接続成功';
     } catch (PDOException $e) {
         die("接続エラー：{$e->getMessage()}");
     }
