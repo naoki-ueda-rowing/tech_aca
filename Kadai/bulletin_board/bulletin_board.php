@@ -30,6 +30,7 @@ require_once 'Encode.php';
         //データベースの接続を確立
         $db = getDb();
 
+
         //INSERT命令にポストデータの内容をセット
     if (isset($_POST['user_name']) && isset($_POST['title']) && isset ($_POST['contents'])) {
         $stt = $db->prepare('INSERT INTO  bulletinboard( user_name, title , contents ) VALUES (:user_name, :title, :contents)');
@@ -40,6 +41,7 @@ require_once 'Encode.php';
         $stt->execute();
         $stt = NULL;
     }
+        
 
         $stt = $db->prepare('SELECT * FROM bulletinboard');
         $stt->execute();
