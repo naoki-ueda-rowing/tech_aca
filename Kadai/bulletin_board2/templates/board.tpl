@@ -20,6 +20,7 @@
 
 
 {else}
+    ユーザー登録またはログインしてください<br><br>
 <!--ログインしていないときのみユーザー登録ボタンの作成-->
 <form action= "smarty_registration.php">
     <input type="submit" value="ユーザー登録"　/><br>
@@ -46,15 +47,20 @@
 
 　　　　{*ログイン者のみが編集・削除可能*}
         {if $results.user_id == $session_id}
-
-        <form  method = "post" action=smarty_edit_input.php>
+        <table>
+        <td>
+            <form  method = "post" action=smarty_edit_input.php>
             <input type = hidden name = id value = {$results.id}>
-            <br><input type="submit" value="編集 "/>
-        </form>
-        <form  method = "post" action= smarty_delete.php>
+            <input type="submit" value="編集 "/>
+            </form>
+        </td>
+            <td>
+            <form  method = "post" action= smarty_delete.php>
             <input type = hidden name = id value = {$results.id}>
             <input type="submit" value="削除 "/><br>
-        </form>
+            </form>
+            </td>
+        </table>
 
         {/if}
 

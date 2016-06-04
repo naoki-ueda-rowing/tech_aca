@@ -15,7 +15,6 @@ try {
     //データベースの接続を確立
     $db = getDb();
 
-    //INSERT命令にユーザーの内容をセット
     if (isset($_POST['user_id']) && isset($_POST['user_name']) && isset ($_POST['password'])) {
 
         //空白の場合は取り除く
@@ -40,7 +39,7 @@ try {
                 header("Location: smarty_board.php");
             }
             else{
-                "入力エラー：ユーザーIDが重複しています";
+                print "入力エラー：ユーザーIDが重複しています";
             }
 
         }
