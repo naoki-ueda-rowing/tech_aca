@@ -5,36 +5,31 @@
  * Date: 2016/06/01
  * Time: 14:59
  */
-require_once('Smarty.class.php');
+require_once('MySmarty.class.php');
 require_once 'connect.php';
-require_once 'Encode.php';
 
-//Smartyクラスのインスタンス生成
-$smarty = new Smarty();
+//MySmartyクラスのインスタンス生成
+$smarty = new MySmarty();
 
 //セッションの開始
 session_start();
 
-//すべての変数をエスケープする
-$smarty->escape_html = true;
-
 //セッションに値が入っていれば処理を開始
-if (isset ($_SESSION['USER_NAME'])&& isset ($_SESSION['USERID'])) {
+if (isset ($_SESSION['user_name']) && isset ($_SESSION['user_id'])) {
     //セッション名をテンプレートに渡す
-    $smarty->assign('session_name', $_SESSION["USER_NAME"]);
-    $smarty->assign('session_id', $_SESSION["USERID"]);
+    $smarty->assign('session_name', $_SESSION['user_name']);
+    $smarty->assign('session_id'  , $_SESSION['user_id']);
 
     try {
         //データベースの接続を確立
         $db = getDb();
-
-
+        
         //INSERT命令にuser_id,本文の内容をセット
         if (isset ($_POST['contents'])) {
             if($_POST['contents'] != "" ) {
                 $stt = $db->prepare('INSERT INTO  post( contents, user_id ) VALUES (:contents, :user_id)');
                 $stt->bindValue(':contents', $_POST['contents']);
-                $stt->bindValue(':user_id', $_SESSION["USERID"]);
+                $stt->bindValue(':user_id', $_SESSION['user_id']);
                 //INSERT命令を実行
                 $stt->execute();
                 $stt = NULL;
@@ -52,17 +47,24 @@ if (isset ($_SESSION['USER_NAME'])&& isset ($_SESSION['USERID'])) {
             $stt->execute();
 
         //結果出力用の配列を定義
-            $user_data = array();
+            $result = array();
 
 
             while ($row = $stt->fetch(PDO::FETCH_ASSOC)) {
                 //データを配列に格納
-                $user_data[] = $row;
+                $result[] = $row;
             }
-
+        
+        //idの値でソートする
+        //ソート用の配列を用意
+        foreach ((array) $result as $key => $value){
+            $sort[$key] = $value['id'];
+        }
+        //ソート実行
+        array_multisort($sort, SORT_ASC, $result);
 
         //テンプレートに配列を渡す
-            $smarty->assign('user_data', $user_data);
+            $smarty->assign('result', $result);
 
             $db = NULL;
 
@@ -71,6 +73,7 @@ if (isset ($_SESSION['USER_NAME'])&& isset ($_SESSION['USERID'])) {
 
     } catch
     (PDOException $e) {
+        $db = NULL;
         die("エラーメッセージ：{$e->getMessage()}");
     }
 

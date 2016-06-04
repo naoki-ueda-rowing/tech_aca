@@ -16,6 +16,7 @@ function getDb()
         $db->exec('SET NAMES utf8');
         //print 'データベースに接続成功';
     } catch (PDOException $e) {
+        $db = NULL;
         die("接続エラー：{$e->getMessage()}");
     }
     return $db;

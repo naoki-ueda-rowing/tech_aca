@@ -5,16 +5,11 @@
  * Date: 2016/06/01
  * Time: 15:42
  */
+require_once('MySmarty.class.php');
 require_once 'connect.php';
-require_once 'Encode.php';
 
-require_once('Smarty.class.php');
-
-//Smartyクラスのインスタンス生成
-$smarty = new Smarty();
-
-//すべての変数をエスケープする
-$smarty->escape_html = true;
+//MySmartyクラスのインスタンス生成
+$smarty = new MySmarty();
 
 //セッション開始
 session_start();
@@ -28,7 +23,7 @@ try {
         //空白の場合は取り除く
         if($_POST['user_id'] != "" && $_POST['password'] != "" ) {
             //ユーザーIDとパスワードを変数に格納
-            $user_id = $_POST['user_id'];
+            $user_id  = $_POST['user_id'];
             $password = $_POST['password'];
             // user_idがmemberに存在するか？trueならname,passwordを特定
             $stt = $db->prepare("SELECT * FROM member WHERE id = '$user_id' ");
@@ -41,7 +36,6 @@ try {
                     //パスワード、名前の取り出し
                     $db_pass = $row['password'];
                     $db_name = $row['name'];
-                    //$db_id   = $row['id'];
                 }
 
                 // データベースの切断
@@ -51,11 +45,12 @@ try {
                 if ($password == $db_pass) {
                     // 認証成功なら、セッションID,nameを新規に発行する
                     session_regenerate_id(true);
-                    $_SESSION["USERID"] = $user_id;
-                    $_SESSION["USER_NAME"] = $db_name;
+                    $_SESSION['user_id']   = $user_id;
+                    $_SESSION['user_name'] = $db_name;
 
                     header("Location: smarty_board.php");
                     exit;
+
                 } else {
                     // 認証失敗
                     print "ユーザIDパスワードに誤りがあります。";
@@ -83,6 +78,7 @@ try {
 }
 catch
 (PDOException $e) {
+    $db = NULL;
     die("エラーメッセージ：{$e->getMessage()}");
 }
 

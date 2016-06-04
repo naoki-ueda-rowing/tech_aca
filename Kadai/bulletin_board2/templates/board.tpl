@@ -21,7 +21,7 @@
 
 {else}
 <!--ログインしていないときのみユーザー登録ボタンの作成-->
-<form action="smarty_touroku.php">
+<form action= "smarty_registration.php">
     <input type="submit" value="ユーザー登録"　/><br>
 </form>
 <!--ログインしていないときのみ、ログインボタンの作成-->
@@ -38,21 +38,21 @@
 {if isset($session_id)}
 
 {*掲示板の内容の表示*}
-    {foreach $user_data as $userdata}
+    {foreach $result as $results}
 
 <table border="1" width="300" height="300">
-    <td height="30" width="50"> </td>
+    <td height="30" width="50">[{$results.id}]</td>
     <td height="30">
 
 　　　　{*ログイン者のみが編集・削除可能*}
-        {if $userdata.user_id == $session_id}
+        {if $results.user_id == $session_id}
 
-        <form  method = post action=smarty_edit_input.php>
-                   <input type = hidden name = id value = {$userdata.id}>
+        <form  method = "post" action=smarty_edit_input.php>
+            <input type = hidden name = id value = {$results.id}>
             <br><input type="submit" value="編集 "/>
         </form>
-        <form  method = post action= smarty_delete.php>
-            <input type = hidden name = id value = {$userdata.id}>
+        <form  method = "post" action= smarty_delete.php>
+            <input type = hidden name = id value = {$results.id}>
             <input type="submit" value="削除 "/><br>
         </form>
 
@@ -62,11 +62,11 @@
     </td>
     <tr>
         <td height="30" width="50"> 名前</td>
-        <td height="30">{$userdata.name}</td>
+        <td height="30">{$results.name}</td>
     </tr>
     <tr>
         <td height="240" width="50"> 本文</td>
-        <td height="240">{$userdata.contents}</td>
+        <td height="240">{$results.contents}</td>
     </tr>
 </table>
 <br><br>

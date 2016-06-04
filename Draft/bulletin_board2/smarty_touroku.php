@@ -48,5 +48,5 @@ catch
     die("エラーメッセージ：{$e->getMessage()}");
 }
 
-$smarty->display( 'touroku.tpl' );
+$smarty->display( 'registration.tpl' );
 ?>

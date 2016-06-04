@@ -5,16 +5,12 @@
  * Date: 2016/06/01
  * Time: 15:42
  */
+require_once('MySmarty.class.php');
 require_once 'connect.php';
-require_once 'Encode.php';
 
-require_once('Smarty.class.php');
+//MySmartyクラスのインスタンス生成
+$smarty = new MySmarty();
 
-//Smartyクラスのインスタンス生成
-$smarty = new Smarty();
-
-//すべての変数をエスケープする
-$smarty->escape_html = true;
 
 try {
 
@@ -40,6 +36,7 @@ try {
 
 catch
 (PDOException $e) {
+    $db = NULL;
     die("エラーメッセージ：{$e->getMessage()}");
 }
 
