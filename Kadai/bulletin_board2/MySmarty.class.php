@@ -15,7 +15,7 @@ class MySmarty extends Smarty {
      *
      */
 
-    function MySsmarty() {
+    function MySmarty() {
         $this->Smarty();
         $this->escape_html     = true;
 
