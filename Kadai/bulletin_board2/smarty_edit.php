@@ -12,27 +12,32 @@ require_once 'connect.php';
 $smarty = new MySmarty();
 
 try {
+    session_start();
 
 if($_POST['contents'] != "" ) {
     //postデータを変数に格納
     $id = $_POST['id'];
     $contents = $_POST['contents'];
-
+    $user_id = $_POST['user_id'];
+if($user_id == $_SESSION['user_id']){
 //データベースの接続を確立
-    $db = getDb();
+        $db = getDb();
 
-    //データベースの本文を更新
-    $sql = 'update post set contents = :contents where id = :id';
-    $stt = $db->prepare($sql);
-    $stt->bindParam(':contents', $contents, PDO::PARAM_STR);
-    $stt->bindParam(':id', $id, PDO::PARAM_STR);
-    $stt->execute();
+        //データベースの本文を更新
+        $sql = 'update post set contents = :contents where id = :id';
+        $stt = $db->prepare($sql);
+        $stt->bindParam(':contents', $contents, PDO::PARAM_STR);
+        $stt->bindParam(':id', $id, PDO::PARAM_STR);
+        $stt->execute();
 
 // 更新完了メッセージの表示
-    echo "更新完了";
+        echo "更新完了";
 
-
-    $db = NULL;
+        $db = NULL;
+    }
+    else{
+        echo "ユーザー認証に失敗しました";
+    }
 
 }
 

@@ -11,12 +11,11 @@ class MySmarty extends Smarty {
     /**
      *  MySmarty Constructor
      *
-     * @param string $dir  テンプレート ディレクトリ
      *
      */
 
-    function MySmarty() {
-        $this->Smarty();
+    public function __construct() {
+        parent::__construct(); //親クラス初期化
         $this->escape_html     = true;
 
     }

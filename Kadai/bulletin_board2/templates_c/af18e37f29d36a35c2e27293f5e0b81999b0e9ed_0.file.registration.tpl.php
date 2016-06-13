@@ -1,6 +1,6 @@
 <?php
 /* Smarty version 3.1.28, created on 2016-06-04 12:52:33
-  from "C:\xampp\htdocs\tech_aca\Kadai\bulletin_board2\templates\registration.tpl" */
+  from "C:\xampp\htdocs\tech_aca\Kadai\bulletin_board2\templates\register.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
@@ -10,7 +10,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
     'af18e37f29d36a35c2e27293f5e0b81999b0e9ed' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\tech_aca\\Kadai\\bulletin_board2\\templates\\registration.tpl',
+      0 => 'C:\\xampp\\htdocs\\tech_aca\\Kadai\\bulletin_board2\\templates\\register.tpl',
       1 => 1465044752,
       2 => 'file',
     ),

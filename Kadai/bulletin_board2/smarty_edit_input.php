@@ -15,7 +15,7 @@ try {
     
     //postデータを変数に格納
     $id = $_POST['id'];
-    
+    $user_id = $_POST['user_id'];
     //データベースの接続を確立
     $db = getDb();
 
@@ -24,8 +24,9 @@ try {
     $stt->execute();
     $row = $stt->fetch(PDO::FETCH_ASSOC);
     
-    //テンプレートにid,本文を渡す
+    //テンプレートにuser_id,本文を渡す
     $smarty->assign('id',$id);
+    $smarty->assign('user_id',$user_id);
     $smarty->assign('contents',$row['contents']);
    
     $db = NULL;

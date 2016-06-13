@@ -6,7 +6,7 @@
 
 <!--ユーザー登録フォームの作成-->
 <br><br>ユーザー登録<br><br>
-<form method="POST" action="smarty_registration.php">
+<form method="POST" action="smarty_register.php">
     <table>
         <td>ユーザーID：</td><td><input type="text" name="user_id" size="15" /></td>
         <tr><td>名前：</td><td><input type="text" name="user_name" size="15" /></td></tr>

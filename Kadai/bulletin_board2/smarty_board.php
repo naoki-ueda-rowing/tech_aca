@@ -43,28 +43,21 @@ if (isset ($_SESSION['user_name']) && isset ($_SESSION['user_id'])) {
 
 
         //postテーブルのid,contents,user_id, memberテーブルのnameを取得する
-            $stt = $db->prepare('SELECT post.id, contents, user_id, member.name FROM post LEFT JOIN member ON post.user_id = member.id ');
+        //idの値でソート
+            $stt = $db->prepare('SELECT post.id, contents, user_id, member.name FROM post LEFT JOIN member ON post.user_id = member.id order by post.id');
             $stt->execute();
 
         //結果出力用の配列を定義
-            $result = array();
+            $post_data = array();
 
 
             while ($row = $stt->fetch(PDO::FETCH_ASSOC)) {
                 //データを配列に格納
-                $result[] = $row;
+                $post_data[] = $row;
             }
-        
-        //idの値でソートする
-        //ソート用の配列を用意
-        foreach ((array) $result as $key => $value){
-            $sort[$key] = $value['id'];
-        }
-        //ソート実行
-        array_multisort($sort, SORT_ASC, $result);
 
         //テンプレートに配列を渡す
-            $smarty->assign('result', $result);
+            $smarty->assign('post_data', $post_data);
 
             $db = NULL;
 

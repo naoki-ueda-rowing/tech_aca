@@ -48,5 +48,5 @@ catch
     die("エラーメッセージ：{$e->getMessage()}");
 }
 
-$smarty->display( 'registration.tpl' );
+$smarty->display( 'register.tpl' );
 ?>

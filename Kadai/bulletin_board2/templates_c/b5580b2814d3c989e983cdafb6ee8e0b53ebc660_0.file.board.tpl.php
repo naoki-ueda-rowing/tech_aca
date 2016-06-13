@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-06-04 13:04:35
+/* Smarty version 3.1.28, created on 2016-06-13 08:56:13
   from "C:\xampp\htdocs\tech_aca\Kadai\bulletin_board2\templates\board.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_5752d1e3b03ab9_44071586',
+  'unifunc' => 'content_575e752dd83226_55310220',
   'file_dependency' => 
   array (
     'b5580b2814d3c989e983cdafb6ee8e0b53ebc660' => 
     array (
       0 => 'C:\\xampp\\htdocs\\tech_aca\\Kadai\\bulletin_board2\\templates\\board.tpl',
-      1 => 1465045467,
+      1 => 1465806630,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_5752d1e3b03ab9_44071586 ($_smarty_tpl) {
+function content_575e752dd83226_55310220 ($_smarty_tpl) {
 ?>
 <html>
 <head>
@@ -46,7 +46,7 @@ function content_5752d1e3b03ab9_44071586 ($_smarty_tpl) {
 <?php } else { ?>
     ユーザー登録またはログインしてください<br><br>
 <!--ログインしていないときのみユーザー登録ボタンの作成-->
-<form action= "smarty_registration.php">
+<form action= "smarty_register.php">
     <input type="submit" value="ユーザー登録"　/><br>
 </form>
 <!--ログインしていないときのみ、ログインボタンの作成-->
@@ -64,36 +64,36 @@ function content_5752d1e3b03ab9_44071586 ($_smarty_tpl) {
 
 
     <?php
-$_from = $_smarty_tpl->tpl_vars['result']->value;
+$_from = $_smarty_tpl->tpl_vars['post_data']->value;
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
 }
-$__foreach_results_0_saved_item = isset($_smarty_tpl->tpl_vars['results']) ? $_smarty_tpl->tpl_vars['results'] : false;
-$_smarty_tpl->tpl_vars['results'] = new Smarty_Variable();
-$__foreach_results_0_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
-if ($__foreach_results_0_total) {
-foreach ($_from as $_smarty_tpl->tpl_vars['results']->value) {
-$__foreach_results_0_saved_local_item = $_smarty_tpl->tpl_vars['results'];
+$__foreach_post_datas_0_saved_item = isset($_smarty_tpl->tpl_vars['post_datas']) ? $_smarty_tpl->tpl_vars['post_datas'] : false;
+$_smarty_tpl->tpl_vars['post_datas'] = new Smarty_Variable();
+$__foreach_post_datas_0_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
+if ($__foreach_post_datas_0_total) {
+foreach ($_from as $_smarty_tpl->tpl_vars['post_datas']->value) {
+$__foreach_post_datas_0_saved_local_item = $_smarty_tpl->tpl_vars['post_datas'];
 ?>
 
 <table border="1" width="300" height="300">
-    <td height="30" width="50">[<?php echo $_smarty_tpl->tpl_vars['results']->value['id'];?>
+    <td height="30" width="50">[<?php echo $_smarty_tpl->tpl_vars['post_datas']->value['id'];?>
 ]</td>
     <td height="30">
 
 　　　　
-        <?php if ($_smarty_tpl->tpl_vars['results']->value['user_id'] == $_smarty_tpl->tpl_vars['session_id']->value) {?>
+        <?php if ($_smarty_tpl->tpl_vars['post_datas']->value['user_id'] == $_smarty_tpl->tpl_vars['session_id']->value) {?>
         <table>
         <td>
             <form  method = "post" action=smarty_edit_input.php>
-            <input type = hidden name = id value = <?php echo $_smarty_tpl->tpl_vars['results']->value['id'];?>
+            <input type = hidden name = id value = <?php echo $_smarty_tpl->tpl_vars['post_datas']->value['id'];?>
 >
             <input type="submit" value="編集 "/>
             </form>
         </td>
             <td>
             <form  method = "post" action= smarty_delete.php>
-            <input type = hidden name = id value = <?php echo $_smarty_tpl->tpl_vars['results']->value['id'];?>
+            <input type = hidden name = id value = <?php echo $_smarty_tpl->tpl_vars['post_datas']->value['id'];?>
 >
             <input type="submit" value="削除 "/><br>
             </form>
@@ -106,22 +106,22 @@ $__foreach_results_0_saved_local_item = $_smarty_tpl->tpl_vars['results'];
     </td>
     <tr>
         <td height="30" width="50"> 名前</td>
-        <td height="30"><?php echo $_smarty_tpl->tpl_vars['results']->value['name'];?>
+        <td height="30"><?php echo $_smarty_tpl->tpl_vars['post_datas']->value['name'];?>
 </td>
     </tr>
     <tr>
         <td height="240" width="50"> 本文</td>
-        <td height="240"><?php echo $_smarty_tpl->tpl_vars['results']->value['contents'];?>
+        <td height="240"><?php echo $_smarty_tpl->tpl_vars['post_datas']->value['contents'];?>
 </td>
     </tr>
 </table>
 <br><br>
     <?php
-$_smarty_tpl->tpl_vars['results'] = $__foreach_results_0_saved_local_item;
+$_smarty_tpl->tpl_vars['post_datas'] = $__foreach_post_datas_0_saved_local_item;
 }
 }
-if ($__foreach_results_0_saved_item) {
-$_smarty_tpl->tpl_vars['results'] = $__foreach_results_0_saved_item;
+if ($__foreach_post_datas_0_saved_item) {
+$_smarty_tpl->tpl_vars['post_datas'] = $__foreach_post_datas_0_saved_item;
 }
 }?>
 
