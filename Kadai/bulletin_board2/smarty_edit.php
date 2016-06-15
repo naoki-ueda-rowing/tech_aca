@@ -14,13 +14,14 @@ $smarty = new MySmarty();
 try {
     session_start();
 
-if($_POST['contents'] != "" ) {
+  if($_POST['contents'] != "" ) {
     //postデータを変数に格納
     $id = $_POST['id'];
     $contents = $_POST['contents'];
     $user_id = $_POST['user_id'];
-if($user_id == $_SESSION['user_id']){
-//データベースの接続を確立
+
+      if($user_id == $_SESSION['user_id']){
+       //データベースの接続を確立
         $db = getDb();
 
         //データベースの本文を更新
@@ -34,17 +35,18 @@ if($user_id == $_SESSION['user_id']){
         echo "更新完了";
 
         $db = NULL;
-    }
+      }
+
     else{
         echo "ユーザー認証に失敗しました";
     }
 
-}
+  }
 
     else{
       print "入力エラー：本文を入力してください";  
     }
-    
+
 }
 
 catch
