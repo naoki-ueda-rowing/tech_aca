@@ -20,10 +20,10 @@ try {
     $contents = $_POST['contents'];
     $user_id = $_POST['user_id'];
 
+
       if($user_id == $_SESSION['user_id']){
        //データベースの接続を確立
         $db = getDb();
-
         //データベースの本文を更新
         $sql = 'update post set contents = :contents where id = :id';
         $stt = $db->prepare($sql);
@@ -33,22 +33,20 @@ try {
 
 // 更新完了メッセージの表示
         echo "更新完了";
-
         $db = NULL;
       }
-
-    else{
+      else{
         echo "ユーザー認証に失敗しました";
-    }
+      }
+
 
   }
+  else{
+      print "入力エラー：本文を入力してください";
+  }
 
-    else{
-      print "入力エラー：本文を入力してください";  
-    }
 
 }
-
 catch
 (PDOException $e) {
     $db = NULL;
